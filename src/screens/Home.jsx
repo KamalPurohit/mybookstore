@@ -15,9 +15,9 @@ const Home = () => {
 
   useEffect(() => {
     if (window.localStorage.getItem("shelfbooks")) {
-      setAlreadyAddedIds((prev) => {
+      setAlreadyAddedIds(() => {
         const books = JSON.parse(window.localStorage.getItem("shelfbooks"));
-        const ids = books.map((book) => book.cover_i);
+        const ids = books.map((book) => book._version_);
         return ids;
       });
     }
@@ -27,7 +27,7 @@ const Home = () => {
   const getBooksBySerch = async (serchQurey) => {
     try {
       const res = await axios.get(
-        `https://openlibrary.org/search.json?q=${serchQurey}&limit=10&page=1`
+        `https://openlibrary.org/search.json?q=${encodeURIComponent(serchQurey)}&limit=10&page=1`
       );
       console.log(res);
       setSerchResult(res.data.docs);
@@ -60,7 +60,7 @@ const Home = () => {
     }
     console.log(bookList);
     bookList.push(serchResult[idx]);
-    setAlreadyAddedIds(prev=>[...prev,serchResult[idx].cover_i])
+    setAlreadyAddedIds(prev=>[...prev,serchResult[idx]._version_])
     window.localStorage.setItem("shelfbooks", JSON.stringify(bookList));
   };
 
@@ -97,7 +97,7 @@ const Home = () => {
                       key={idx}
                       idx={idx}
                       handleAddToShelf={(idx) => handleAddToShelf(idx)}
-                      alreadyAdded={alreadyAddedIds.includes(book.cover_i)}
+                      alreadyAdded={alreadyAddedIds.includes(book._version_)}
                     />
                   );
                 })}
