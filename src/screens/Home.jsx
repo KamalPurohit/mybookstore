@@ -27,7 +27,7 @@ const Home = () => {
   const getBooksBySerch = async (serchQurey) => {
     try {
       const res = await axios.get(
-        `https://openlibrary.org/search.json?q=${encodeURIComponent(serchQurey)}&limit=10&page=1`
+        `https://openlibrary.org/search.json?q=${serchQurey}&limit=10&page=1`
       );
       console.log(res);
       setSerchResult(res.data.docs);

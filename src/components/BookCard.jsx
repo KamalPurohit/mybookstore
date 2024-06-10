@@ -1,12 +1,13 @@
 import React from "react";
+import Default_image from "../assets/Default_image.webp"
 
 const BookCard = ({ book, handleAddToShelf, idx, alreadyAdded }) => {
   return (
     <div className=" max-w-[300px] min-w-[300px] bg-primary border-2 border-[#136822] flex-1  flex flex-col gap-5 p-4 rounded-md ">
-      <img src={`https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg`} className="h-[238px] w-[180px] self-center" />
-      <span className="text-gray-300">
+      <img src={`https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg`} alt={Default_image} className="h-[238px] w-[180px] self-center" />
+      <span className="text-gray-300 line-clamp-2	">
         {" "}
-        <span className="text-white font-medium">Title:</span> {book.title}
+        <span className="text-white font-medium ">Title:</span> {book.title}
       </span>
       <span className="text-gray-300">
         <span className="text-white font-medium">Edition Count:</span>{" "}
