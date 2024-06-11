@@ -84,7 +84,7 @@ const Home = () => {
             <h4 className="text-2xl font-medium">Results</h4>
             {serch.length < 3 ? (
               <span className="text-gray-400">
-                Enter more than 3 or more character to serch.
+                Enter 3 or more character to serch.
               </span>
             ) : serchResult.length == 0 ? (
               <span className="text-gray-400">No Books Found :/</span>
